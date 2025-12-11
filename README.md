@@ -6,6 +6,7 @@ Mobile Finanztracker App für Modul 335
 **Modul:** 335 - Mobile Applikationen entwickeln  
 **Typ:** ÜK Projekt  
 **GitHub:** https://github.com/ImMilan123/milan-jevgenijevic-m335
+**App Password:** 123456
 
 ## Beschreibung
 
