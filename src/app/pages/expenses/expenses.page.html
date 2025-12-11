@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <span (click)="goHome()" style="cursor: pointer; user-select: none;">💰 BudgetBuddy</span>
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar 
+      placeholder="Search expenses..." 
+      (ionInput)="searchExpenses($event)"
+      animated="true">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Offline Banner -->
+  <div class="offline-banner" *ngIf="!isOnline">
+    Showing offline data
+  </div>
+
+  <!-- Expenses List -->
+  <ion-list *ngIf="filteredExpenses.length > 0">
+    <ion-item 
+      *ngFor="let expense of filteredExpenses" 
+      button 
+      (click)="viewExpenseDetail(expense)">
+      <ion-label>
+        <h2>{{ expense.title }}</h2>
+        <p>{{ expense.date | date:'dd.MM.yyyy' }} • {{ expense.category }}</p>
+      </ion-label>
+      <ion-badge [color]="getCategoryColor(expense.category)" slot="end">
+        CHF {{ expense.amount.toFixed(2) }}
+      </ion-badge>
+      <ion-icon name="chevron-forward" slot="end"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+  <!-- Empty State -->
+  <div class="empty-state" *ngIf="filteredExpenses.length === 0">
+    <ion-icon name="wallet" size="large"></ion-icon>
+    <h2>No Expenses Yet</h2>
+    <p>Start tracking your expenses by adding your first entry</p>
+    <ion-button (click)="addExpense()" color="primary">
+      <ion-icon name="add" slot="start"></ion-icon>
+      Add Expense
+    </ion-button>
+  </div>
+
+  <!-- Floating Action Button -->
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="addExpense()" color="secondary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+

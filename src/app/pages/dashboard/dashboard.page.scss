@@ -1,0 +1,86 @@
+.dashboard-container {
+  padding: 16px;
+}
+
+.welcome-section {
+  margin-bottom: 24px;
+  text-align: center;
+
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 8px 0;
+    color: var(--ion-color-primary);
+  }
+
+  p {
+    color: var(--ion-color-medium);
+    font-size: 14px;
+  }
+}
+
+.summary-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 16px;
+
+  .stat-item {
+    text-align: center;
+
+    h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    p {
+      color: var(--ion-color-medium);
+      font-size: 12px;
+      margin-top: 4px;
+    }
+  }
+}
+
+.action-card {
+  text-align: center;
+  padding: 24px 16px;
+
+  ion-icon {
+    color: var(--ion-color-primary);
+    margin-bottom: 8px;
+  }
+
+  p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+
+.placeholder-text {
+  text-align: center;
+  color: var(--ion-color-medium);
+  font-style: italic;
+  padding: 24px 0;
+}
+
+.chart-container {
+  padding: 16px 0;
+  max-width: 400px;
+  margin: 0 auto;
+  
+  canvas {
+    max-height: 300px;
+  }
+}
+
+ion-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  ion-icon {
+    font-size: 20px;
+  }
+}
+

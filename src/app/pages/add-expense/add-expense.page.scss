@@ -1,0 +1,103 @@
+.form-container {
+  padding: 16px;
+}
+
+ion-list {
+  background: var(--ion-card-background);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+ion-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  --background: transparent;
+  margin-bottom: 16px;
+}
+
+ion-label[position="stacked"] {
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.photo-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+
+  ion-button {
+    flex: 1;
+    min-width: 0; // Allow button to shrink
+    
+    .btn-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  // Stack buttons on very small screens
+  @media (max-width: 360px) {
+    flex-direction: column;
+    
+    ion-button {
+      width: 100%;
+    }
+  }
+}
+
+.photo-preview {
+  margin-top: 16px;
+  text-align: center;
+
+  img {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.hint-text {
+  text-align: center;
+  color: var(--ion-color-medium);
+  font-size: 14px;
+  margin-top: 16px;
+}
+
+.action-buttons {
+  margin-top: 32px;
+
+  ion-button {
+    margin-bottom: 8px;
+  }
+}
+
+h3 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.date-picker-btn {
+  margin-top: 8px;
+  text-transform: none;
+  font-weight: 600;
+  --border-radius: 8px;
+  height: auto;
+  min-height: 44px;
+  font-size: 16px;
+}
+
+ion-card {
+  border-radius: 12px;
+}
+
+.photo-preview {
+  img {
+    border-radius: 12px;
+  }
+}
+
+

@@ -1,0 +1,34 @@
+# Icon Placeholder
+
+Place your app icons in this directory:
+
+- icon-72x72.png
+- icon-96x96.png
+- icon-128x128.png
+- icon-144x144.png
+- icon-152x152.png
+- icon-192x192.png
+- icon-384x384.png
+- icon-512x512.png
+- favicon.png
+
+## Generating Icons
+
+You can use the Ionic CLI to generate icons:
+
+```bash
+ionic capacitor resources
+```
+
+Or use online tools like:
+- https://www.ionicframework.com/docs/cli/commands/capacitor-resources
+- https://www.pwabuilder.com/
+- https://realfavicongenerator.net/
+
+## Icon Requirements
+
+- **Format:** PNG with transparency
+- **Base Size:** 1024x1024px recommended
+- **Colors:** Use BudgetBuddy brand colors (Indigo #6366f1)
+- **Design:** Simple, recognizable icon (e.g., wallet, coins, piggy bank)
+

@@ -1,0 +1,114 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/expenses"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <span (click)="goHome()" style="cursor: pointer; user-select: none;">💰 BudgetBuddy</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="form-container">
+    <ion-list>
+      <!-- Title -->
+      <ion-item>
+        <ion-label position="stacked">Title *</ion-label>
+        <ion-input 
+          [(ngModel)]="expense.title" 
+          placeholder="e.g., Grocery Shopping"
+          type="text"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <!-- Amount -->
+      <ion-item>
+        <ion-label position="stacked">Amount (CHF) *</ion-label>
+        <ion-input 
+          [(ngModel)]="expense.amount" 
+          placeholder="0.00"
+          type="number"
+          min="0"
+          step="0.01"
+          inputmode="decimal"
+          (ionInput)="validateAmount($event)"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <!-- Category -->
+      <ion-item>
+        <ion-label position="stacked">Category</ion-label>
+        <ion-select [(ngModel)]="expense.category" interface="action-sheet">
+          <ion-select-option *ngFor="let cat of categories" [value]="cat">
+            {{ cat }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Date -->
+      <ion-item>
+        <ion-label position="stacked">Date</ion-label>
+        <ion-button 
+          fill="outline" 
+          expand="block" 
+          (click)="openDatePicker()"
+          class="date-picker-btn">
+          {{ expense.date | date:'MMM d, yyyy' }}
+        </ion-button>
+      </ion-item>
+    </ion-list>
+
+    <!-- Date Modal -->
+    <ion-modal #dateModal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime 
+          id="expense-date" 
+          [(ngModel)]="expense.date"
+          presentation="date"
+          [max]="maxDate"
+          (ionChange)="closeDatePicker()">
+        </ion-datetime>
+      </ng-template>
+    </ion-modal>
+
+    <!-- Receipt Photo Section -->
+    <ion-card>
+      <ion-card-content>
+        <h3>Receipt Photo</h3>
+        <div class="photo-actions">
+          <ion-button (click)="takePhoto()" expand="block" fill="outline" class="photo-btn">
+            <ion-icon name="camera" slot="start"></ion-icon>
+            <span class="btn-text">Take Photo</span>
+          </ion-button>
+          <ion-button (click)="pickFromGallery()" expand="block" fill="outline" class="photo-btn">
+            <ion-icon name="images" slot="start"></ion-icon>
+            <span class="btn-text">Gallery</span>
+          </ion-button>
+        </div>
+
+        <!-- Photo Preview -->
+        <div class="photo-preview" *ngIf="receiptPhotoData || expense.receipt_url">
+          <img [src]="receiptPhotoData || expense.receipt_url" alt="Receipt" class="receipt-image">
+        </div>
+        <p class="hint-text" *ngIf="!receiptPhotoData && !expense.receipt_url">
+          Attach a receipt photo (optional)
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <ion-button expand="block" (click)="saveExpense()" color="primary">
+        <ion-icon name="save" slot="start"></ion-icon>
+        {{ isEditMode ? 'Update' : 'Save' }} Expense
+      </ion-button>
+      <ion-button expand="block" (click)="cancel()" fill="clear">
+        Cancel
+      </ion-button>
+    </div>
+  </div>
+</ion-content>
+

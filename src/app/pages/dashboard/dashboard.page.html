@@ -1,0 +1,90 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>💰 BudgetBuddy</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Offline Banner -->
+  <div class="offline-banner" *ngIf="!isOnline">
+    You are offline. Changes will sync when online.
+  </div>
+
+  <div class="dashboard-container">
+    <!-- Welcome Header -->
+    <div class="welcome-section">
+      <h1>Welcome Back!</h1>
+      <p>Track your expenses and manage your budget</p>
+    </div>
+
+    <!-- Summary Card -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="wallet"></ion-icon>
+          This Month
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="summary-stats">
+          <div class="stat-item">
+            <h2 class="currency">CHF {{ totalExpenses.toFixed(2) }}</h2>
+            <p>Total Expenses</p>
+          </div>
+          <div class="stat-item">
+            <h2>{{ expenseCount }}</h2>
+            <p>Transactions</p>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Quick Actions -->
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-card button (click)="navigateToExpenses()">
+            <ion-card-content class="action-card">
+              <ion-icon name="list" size="large"></ion-icon>
+              <p>View Expenses</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6">
+          <ion-card button (click)="navigateToSettings()">
+            <ion-card-content class="action-card">
+              <ion-icon name="settings" size="large"></ion-icon>
+              <p>Settings</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!-- Category Breakdown Chart -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="trending-up"></ion-icon>
+          Category Breakdown
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div *ngIf="hasData" class="chart-container">
+          <canvas #pieChart></canvas>
+        </div>
+        <p *ngIf="!hasData" class="placeholder-text">
+          No expenses yet. Add your first expense to see the breakdown!
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Floating Action Button -->
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="navigateToAddExpense()" color="secondary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+

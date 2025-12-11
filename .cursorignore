@@ -1,0 +1,45 @@
+# Cursor AI Ignore File
+# Files and folders that should be ignored by Cursor AI
+
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build outputs
+www/
+dist/
+.angular/
+
+# Platform-specific
+android/
+ios/
+platforms/
+plugins/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.local
+
+# Coverage
+coverage/
+
+# Temporary
+.tmp/
+*.tmp
+
